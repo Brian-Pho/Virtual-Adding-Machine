@@ -1,7 +1,6 @@
 import express from 'express';
 import http from 'http';
 import io from 'socket.io';
-import moment from "moment";
 
 const index = express();
 const server = http.createServer(index);
@@ -25,18 +24,40 @@ allSockets.on('connection', (socket) => {
     // Add journal entry
     socket.on('journal entry', (msg) => {
         journalHistory.push(msg);
+        socket.emit('journal balance', calculateJournalBalance(journalHistory));
         console.log('new entry: ' + JSON.stringify(msg));
     });
 
     // Clear journal history
     socket.on('journal history clear', () => {
         journalHistory.length = 0;
+        console.log('clear journal history');
     });
 
     // Handle disconnects
-    socket.on('disconnect', () => {});
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
 });
 
 server.listen(3001, () => {
     console.log('listening on http://localhost:3001/');
 });
+
+
+/**
+ * Calculates the journal's balance.
+ * @param journalHistory
+ * @returns {number}
+ */
+export function calculateJournalBalance(journalHistory) {
+    let total_debit = 0;
+    let total_credit = 0;
+
+    for (let entry of journalHistory) {
+        total_debit += entry.debit;
+        total_credit += entry.credit;
+    }
+
+    return total_credit - total_debit;
+}
