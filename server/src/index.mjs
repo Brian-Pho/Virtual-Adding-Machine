@@ -9,51 +9,18 @@ const server = http.createServer(index);
 const allSockets = io(server);
 
 index.get('/', (req, res) => {
-    res.send("<p>Chat Server Page. This page isn't used for chatting.</p>");
+    res.send("<p>Server Page. This page isn't used.</p>");
 });
 
-// List of previous messages with the poster and timestamp
-const chatHistory = [];
-// List of online users
-const onlineUsers = [];
-// User counter used for unique usernames
-let countUser = 0;
-// Server user
-const serverUser = {
-    name: "Server",
-    color: "000000",
-};
+const journalHistory = [];
 
 // On connection of a new client
 allSockets.on('connection', (socket) => {
-    let user = undefined;
-
-    // Handle user initialization
-    socket.on('cookie user', (cookieUser) => {
-        const cookieUsername = cookieUser.name;
-
-        // If this is a new user or if the user doesn't have a unique username,
-        // then autogenerate a user for them
-       if (cookieUsername === 'Offline' || !isUsernameUnique(cookieUsername, onlineUsers)) {
-           // Loop until a unique username is found. Is needed to handle the case when
-           // another username is the same as the generated one
-           do {
-               user = {
-                   name: `User${countUser}`,
-                   color: `${Math.floor(Math.random() * 16777215).toString(16)}`,
-               };
-               countUser++;
-           } while (!isUsernameUnique(user.name, onlineUsers));
-       } else {
-            user = cookieUser;
-       }
-        onlineUsers.push(user);
-
-        // Send the initial data dump of the client's user, chat history, and online users
-        socket.emit('user', user);
-        socket.emit('chat history', chatHistory);
-        allSockets.emit('online users', onlineUsers);
-        console.log('user connected: ' + JSON.stringify(user));
+    // Handle client initial connection
+    socket.on('initial connection', () => {
+        // Send the initial data dump of journal history
+        socket.emit('journal history', journalHistory);
+        console.log('user connected');
     });
 
     // Handle chat messages
