@@ -2,7 +2,6 @@ import express from 'express';
 import http from 'http';
 import io from 'socket.io';
 import moment from "moment";
-import { handleCommand, isValidCommand, isUsernameUnique } from "./commands.mjs";
 
 const index = express();
 const server = http.createServer(index);
@@ -23,51 +22,19 @@ allSockets.on('connection', (socket) => {
         console.log('user connected');
     });
 
-    // Handle chat messages
-    socket.on('chat message', (msg) => {
-        // Calculate message timestamp
-        msg.timestamp = moment().unix();
-        chatHistory.push(msg);
-        allSockets.emit('chat message', msg);
-        console.log('msg: ' + JSON.stringify(msg));
+    // Add journal entry
+    socket.on('journal entry', (msg) => {
+        journalHistory.push(msg);
+        console.log('new entry: ' + JSON.stringify(msg));
     });
 
-    // Handle commands
-    socket.on('chat command', (cmd) => {
-        const serverResponse = {
-            user: serverUser,
-            text: "Successfully handled command.",
-            timestamp: moment().unix(),
-        };
-
-        // Validate and handle the command
-        try {
-            isValidCommand(cmd, onlineUsers);
-            handleCommand(cmd, user, onlineUsers);
-            allSockets.emit('online users', onlineUsers);
-            socket.emit('user', user);
-        } catch (err) {
-            serverResponse.text = `Error handling command: ${err}`;
-        } finally {
-            socket.emit('chat command', serverResponse);
-        }
-        console.log('cmd: ' + cmd);
+    // Clear journal history
+    socket.on('journal history clear', () => {
+        journalHistory.length = 0;
     });
 
     // Handle disconnects
-    socket.on('disconnect', () => {
-        // Remove the user from the online users list
-        const disconnectedUserIndex = onlineUsers.indexOf(user);
-        if (disconnectedUserIndex > -1) {
-            onlineUsers.splice(disconnectedUserIndex, 1);
-        } else {
-            console.log('user not found: ' + JSON.stringify(user));
-        }
-
-        // Tell all clients to update their online user list
-        allSockets.emit('online users', onlineUsers);
-        console.log('user disconnected: ' + JSON.stringify(user));
-    });
+    socket.on('disconnect', () => {});
 });
 
 server.listen(3001, () => {
