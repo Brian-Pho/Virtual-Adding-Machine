@@ -10,7 +10,12 @@ index.get('/', (req, res) => {
     res.send("<p>Server Page. This page isn't used.</p>");
 });
 
-const journalHistory = [];
+const journalHistory = [
+    {   date: 'fdsa',
+        transaction: 'fdsa',
+        debit: 123,
+        credit: 321}
+];
 
 // On connection of a new client
 allSockets.on('connection', (socket) => {
@@ -24,6 +29,7 @@ allSockets.on('connection', (socket) => {
     // Add journal entry
     socket.on('journal entry', (msg) => {
         journalHistory.push(msg);
+        socket.emit('journal history', journalHistory);
         socket.emit('journal balance', calculateJournalBalance(journalHistory));
         console.log('new entry: ' + JSON.stringify(msg));
     });
