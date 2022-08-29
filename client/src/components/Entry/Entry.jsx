@@ -37,8 +37,8 @@ class Entry extends React.Component {
         const journalEntry = {
             date: dateInput,
             transaction: transactionInput,
-            debit: debitInput,
-            credit: creditInput,
+            debit: parseInt(debitInput),
+            credit: parseInt(creditInput),
         };
 
         this.socket.emit('journal entry', journalEntry);

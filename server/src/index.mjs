@@ -10,6 +10,7 @@ index.get('/', (req, res) => {
     res.send("<p>Server Page. This page isn't used.</p>");
 });
 
+// const journalHistory = [];
 const journalHistory = [
     {   date: 'fdsa',
         transaction: 'fdsa',
@@ -23,6 +24,7 @@ allSockets.on('connection', (socket) => {
     socket.on('initial connection', () => {
         // Send the initial data dump of journal history
         socket.emit('journal history', journalHistory);
+        socket.emit('journal balance', calculateJournalBalance(journalHistory));
         console.log('user connected');
     });
 
@@ -65,5 +67,5 @@ export function calculateJournalBalance(journalHistory) {
         total_credit += entry.credit;
     }
 
-    return total_credit - total_debit;
+    return total_debit - total_credit;
 }
