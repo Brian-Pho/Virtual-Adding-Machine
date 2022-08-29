@@ -13,18 +13,19 @@ LegacyX Take-Home Technical Interview Challenge
 
 - [x] Add journal entries
 - [x] Review history of calculations
+- [x] Clear history
 - [x] Save history on server
-- [ ] Save history to file
-- [ ] Show calculated balance
-- [ ] Clear history
+- [x] Save history to file
+- [x] Calculate balance
+- [x] Show calculated balance
 
 ### Client Requirements
 
 #### Buttons
 
 - [x] Add entry
-- [ ] Save history to file
-- [ ] Clear history
+- [x] Save history to file
+- [x] Clear history
 
 ### Server Requirements
 
@@ -32,7 +33,7 @@ LegacyX Take-Home Technical Interview Challenge
 - [x] Can send history if client requests it (client requests on entry)
 - [x] Can add entries to the history
 - [x] Can clear history
-- [ ] Calculates balance
+- [x] Calculates balance
 
 ## Questions
 
@@ -42,7 +43,7 @@ LegacyX Take-Home Technical Interview Challenge
 - How to save history in the event of client crash?
   - Store history on server and retrieve it on startup
 - With a new entry, should the server resend the entire history, only send the new entry, or don't send anything?
-  - Going with not sending anything to save on bandwidth. Con is that this duplicates the entry on client and server. Tradeoff is performance for potential inconsistency between client and server.
+  - Going with resending entire history. Con is that can send a lot of duplicate data from server to client. Pro is that it's simpler to code. Tradeoff is performance for potential inconsistency between client and server.
 - Should the client or server calculate the balance?
   - Let server calculate balance
 
@@ -55,3 +56,5 @@ LegacyX Take-Home Technical Interview Challenge
 - Scaling?
 - Make text in table cells wrap
 - Add "Save as" file dialog popup
+- Add "Are you sure?" dialog popup for Clear History button
+- Add form validation

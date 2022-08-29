@@ -12,10 +12,24 @@ index.get('/', (req, res) => {
 
 // const journalHistory = [];
 const journalHistory = [
-    {   date: 'fdsa',
-        transaction: 'fdsa',
-        debit: 123,
-        credit: 321}
+    {
+        date: '2022-08-25',
+        transaction: 'Rent',
+        debit: 700,
+        credit: 0,
+    },
+    {
+        date: '2022-09-05',
+        transaction: 'Gas',
+        debit: 0,
+        credit: 100,
+    },
+    {
+        date: '2022-09-06',
+        transaction: 'Groceries',
+        debit: 0,
+        credit: 500,
+    },
 ];
 
 // On connection of a new client
@@ -39,7 +53,9 @@ allSockets.on('connection', (socket) => {
     // Clear journal history
     socket.on('journal history clear', () => {
         journalHistory.length = 0;
-        console.log('clear journal history');
+        socket.emit('journal history', journalHistory);
+        socket.emit('journal balance', calculateJournalBalance(journalHistory));
+        console.log('cleared journal history');
     });
 
     // Handle disconnects
@@ -51,7 +67,6 @@ allSockets.on('connection', (socket) => {
 server.listen(3001, () => {
     console.log('listening on http://localhost:3001/');
 });
-
 
 /**
  * Calculates the journal's balance.
