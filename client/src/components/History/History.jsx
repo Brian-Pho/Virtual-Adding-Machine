@@ -14,25 +14,19 @@ class History extends React.Component {
         this.socket.on('journal history', (journalHistory) => {
             this.setState({journalHistory: journalHistory})
         });
-
-        this.socket.on('journal entry', (entry) => {
-            this.setState((state) => ({
-                journalHistory: state.journalHistory.concat(entry)
-            }))
-        });
     }
 
     render() {
         return (
-            <div className="History d-flex flex-column-reverse overflow-auto w-100 h-100 bg-white">
+            <div className="History d-flex flex-column-reverse overflow-auto w-100 h-75 bg-white m-3">
                 <Table hover size="sm">
                     <thead className="sticky-top thead-dark">
                     <tr>
                         <th>#</th>
                         <th>Date</th>
                         <th>Transaction</th>
-                        <th>Debit</th>
-                        <th>Credit</th>
+                        <th className="number">Debit</th>
+                        <th className="number">Credit</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,8 +35,8 @@ class History extends React.Component {
                             <td>{index}</td>
                             <td>{entry.date}</td>
                             <td>{entry.transaction}</td>
-                            <td>{entry.debit}</td>
-                            <td>{entry.credit}</td>
+                            <td className="number">{entry.debit}</td>
+                            <td className="number">{entry.credit}</td>
                         </tr>)
                     })}
                     </tbody>

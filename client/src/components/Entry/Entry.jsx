@@ -52,7 +52,7 @@ class Entry extends React.Component {
 
     render() {
         return (
-            <Form>
+            <Form className="m-3">
                 <Row>
                     <Col>
                         <FormControl ref={this.entryDateInput} placeholder="Date" required />

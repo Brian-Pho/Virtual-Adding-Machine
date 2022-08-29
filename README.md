@@ -11,28 +11,28 @@ LegacyX Take-Home Technical Interview Challenge
 
 ## Requirements
 
-- Add journal entries
-- Review history of calculations
-- Save history on server
-- Save history to file
-- Show calculated balance
-- Clear history
+- [x] Add journal entries
+- [x] Review history of calculations
+- [x] Save history on server
+- [ ] Save history to file
+- [ ] Show calculated balance
+- [ ] Clear history
 
 ### Client Requirements
 
 #### Buttons
 
-- Add entry
-- Save history to file
-- Clear history
+- [x] Add entry
+- [ ] Save history to file
+- [ ] Clear history
 
 ### Server Requirements
 
-- Stores history
-- Can send history if client requests it (client requests on entry)
-- Can add entries to the history
-- Can clear history
-- Calculates balance
+- [x] Stores history
+- [x] Can send history if client requests it (client requests on entry)
+- [x] Can add entries to the history
+- [x] Can clear history
+- [ ] Calculates balance
 
 ## Questions
 
@@ -54,3 +54,4 @@ LegacyX Take-Home Technical Interview Challenge
 - Performance?
 - Scaling?
 - Make text in table cells wrap
+- Add "Save as" file dialog popup
