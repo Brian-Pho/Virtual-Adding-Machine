@@ -27,6 +27,7 @@ class App extends React.Component {
                         <h3 className="text-center">
                             LegacyX Virtual Adding Machine
                         </h3>
+                    <Row className="h-75 mb-4">
                         <History socket={this.socket}/>
                     </Row>
                     <Row>
