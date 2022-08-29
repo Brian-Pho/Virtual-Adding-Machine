@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import './App.css';
 import History from "../History/History"
 import Entry from "../Entry/Entry";
+import Utilities from "../Utilities/Utilities";
 
 const SERVER_URI = 'http://localhost:3001';
 
@@ -29,7 +30,7 @@ class App extends React.Component {
                     </h3>
                     <Row className="h-75 mb-4">
                         <History socket={this.socket}/>
-                    </Row>
+                    <Utilities socket={this.socket}/>
                     <Row>
                         <Entry socket={this.socket}/>
                     </Row>
