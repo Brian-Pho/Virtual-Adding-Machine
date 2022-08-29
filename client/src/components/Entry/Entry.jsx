@@ -15,9 +15,6 @@ class Entry extends React.Component {
         this.entryTransactionInput = React.createRef();
         this.entryDebitInput = React.createRef();
         this.entryCreditInput = React.createRef();
-        this.state = {
-            validated: false
-        };
     }
 
     handleSubmit(event) {
@@ -45,12 +42,17 @@ class Entry extends React.Component {
         };
 
         this.socket.emit('journal entry', journalEntry);
-        // this.setState((state) => {state.journalHistory.push(journalEntry)});
+
+        // Clear the input fields
+        this.entryDateInput.current.value = "";
+        this.entryTransactionInput.current.value = "";
+        this.entryDebitInput.current.value = "";
+        this.entryCreditInput.current.value = "";
     }
 
     render() {
         return (
-            <Form noValidate validated={this.state.validated}>
+            <Form>
                 <Row>
                     <Col>
                         <FormControl ref={this.entryDateInput} placeholder="Date" required />

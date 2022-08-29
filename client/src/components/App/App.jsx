@@ -24,9 +24,9 @@ class App extends React.Component {
         return (
             <div className="App text-center vh-100 bg-light">
                 <Container className="container-fluid h-100">
-                        <h3 className="text-center">
-                            LegacyX Virtual Adding Machine
-                        </h3>
+                    <h3 className="text-center">
+                        LegacyX Virtual Adding Machine
+                    </h3>
                     <Row className="h-75 mb-4">
                         <History socket={this.socket}/>
                     </Row>

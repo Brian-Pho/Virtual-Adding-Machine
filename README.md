@@ -53,3 +53,4 @@ LegacyX Take-Home Technical Interview Challenge
 - Multiple journals?
 - Performance?
 - Scaling?
+- Make text in table cells wrap

@@ -27,24 +27,24 @@ class History extends React.Component {
             <div className="History d-flex flex-column-reverse overflow-auto w-100 h-100 bg-white">
                 <Table hover size="sm">
                     <thead className="sticky-top thead-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Transaction</th>
-                            <th>Debit</th>
-                            <th>Credit</th>
-                        </tr>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Transaction</th>
+                        <th>Debit</th>
+                        <th>Credit</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {this.state.journalHistory.map((entry, index) => {
-                            return (<tr key={index}>
-                                <td>{index}</td>
-                                <td>{entry.date}</td>
-                                <td>{entry.transaction}</td>
-                                <td>{entry.debit}</td>
-                                <td>{entry.credit}</td>
-                            </tr>)
-                        })}
+                    {this.state.journalHistory.map((entry, index) => {
+                        return (<tr key={index}>
+                            <td>{index}</td>
+                            <td>{entry.date}</td>
+                            <td>{entry.transaction}</td>
+                            <td>{entry.debit}</td>
+                            <td>{entry.credit}</td>
+                        </tr>)
+                    })}
                     </tbody>
                 </Table>
             </div>
