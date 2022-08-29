@@ -22,9 +22,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App text-center">
+            <div className="App text-center vh-100 bg-light">
                 <Container className="container-fluid h-100">
-                    <Row>
+                        <h3 className="text-center">
+                            LegacyX Virtual Adding Machine
+                        </h3>
                         <History socket={this.socket}/>
                     </Row>
                     <Row>
