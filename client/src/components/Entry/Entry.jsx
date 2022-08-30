@@ -1,10 +1,10 @@
 import React from 'react';
-import './Entry.css';
 import Button from 'react-bootstrap/Button';
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './Entry.css';
 
 
 class Entry extends React.Component {
@@ -17,14 +17,7 @@ class Entry extends React.Component {
         this.entryCreditInput = React.createRef();
     }
 
-    handleSubmit(event) {
-        // const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
-        // this.setState({validated: true});
-
+    handleSubmit() {
         const dateInput = this.entryDateInput.current.value;
         const transactionInput = this.entryTransactionInput.current.value;
         const debitInput = this.entryDebitInput.current.value;
@@ -37,8 +30,8 @@ class Entry extends React.Component {
         const journalEntry = {
             date: dateInput,
             transaction: transactionInput,
-            debit: parseInt(debitInput),
-            credit: parseInt(creditInput),
+            debit: Number(debitInput),
+            credit: Number(creditInput),
         };
 
         this.socket.emit('journal entry', journalEntry);

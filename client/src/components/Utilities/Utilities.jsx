@@ -1,14 +1,17 @@
 import React from 'react';
-import './Utilities.css';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import './Utilities.css';
 
 
 class Utilities extends React.Component {
     constructor(props) {
         super(props);
         this.socket = props.socket;
-        this.state = {journalHistory: [], balance: 0};
+        this.state = {
+            journalHistory: [],
+            balance: 0,
+        };
     }
 
     componentDidMount() {

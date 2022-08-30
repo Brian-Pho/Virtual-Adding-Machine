@@ -18,7 +18,7 @@ class History extends React.Component {
 
     render() {
         return (
-            <div className="History d-flex flex-column-reverse overflow-auto w-100 h-75 bg-white m-3">
+            <div className="History d-flex flex-column-reverse overflow-auto h-75 bg-white m-3">
                 <Table hover size="sm">
                     <thead className="sticky-top thead-dark">
                     <tr>

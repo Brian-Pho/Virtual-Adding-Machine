@@ -1,13 +1,15 @@
 # Virtual-Adding-Machine
 
-LegacyX Take-Home Technical Interview Challenge
+Take-Home Technical Interview Challenge
 
 ## Approach
 
 1. Use existing code from previous project as base.
-2. List requirements.
+2. List requirements from user story.
 3. Determine architecture (client-server).
 4. Don't worry about UI, have functions first.
+5. Clean up UI.
+6. Clean up code.
 
 ## Requirements
 

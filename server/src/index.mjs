@@ -10,7 +10,6 @@ index.get('/', (req, res) => {
     res.send("<p>Server Page. This page isn't used.</p>");
 });
 
-// const journalHistory = [];
 const journalHistory = [
     {
         date: '2022-08-25',
@@ -36,7 +35,6 @@ const journalHistory = [
 allSockets.on('connection', (socket) => {
     // Handle client initial connection
     socket.on('initial connection', () => {
-        // Send the initial data dump of journal history
         socket.emit('journal history', journalHistory);
         socket.emit('journal balance', calculateJournalBalance(journalHistory));
         console.log('user connected');
@@ -58,7 +56,7 @@ allSockets.on('connection', (socket) => {
         console.log('cleared journal history');
     });
 
-    // Handle disconnects
+    // Handle client disconnection
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });
@@ -67,6 +65,7 @@ allSockets.on('connection', (socket) => {
 server.listen(3001, () => {
     console.log('listening on http://localhost:3001/');
 });
+
 
 /**
  * Calculates the journal's balance.

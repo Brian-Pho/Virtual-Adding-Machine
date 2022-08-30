@@ -12,7 +12,6 @@ const SERVER_URI = 'http://localhost:3001';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        // Connect to the socket.io server at this endpoint
         this.socket = io(SERVER_URI);
     }
 
